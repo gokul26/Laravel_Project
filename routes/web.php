@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+// Route for registration
+
+
+Route::get('register', function () {
+    return view('register');
+});
