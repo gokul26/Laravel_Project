@@ -17,6 +17,18 @@ Route::get('/', function () {
 // Route for registration
 
 
-Route::get('register', function () {
+Route::get('/register', function () {
     return view('register');
+});
+
+Route::post('/register',function(){
+    $userdetails = new App\Users;
+    $userdetails->email= Input::get('email');
+    $userdetails->name= Input::get('username');
+    $userdetails->password= Hash::make(Input::get('password'));
+    $userdetails->save();
+
+    $theEmail = Input::get('email');
+
+    return View::make('thanks')->with('theEmail', $theEmail);
 });
