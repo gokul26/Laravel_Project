@@ -32,3 +32,18 @@ Route::post('/register',function(){
 
     return View::make('thanks')->with('theEmail', $theEmail);
 });
+
+
+Route::get('/login',function(){
+    return view('login');
+});
+
+
+Route::get('/logout',function(){
+    return view('logout');
+});
+
+Route::get('/home', array('before' => 'auth.basic', function()
+{
+    return View::make('home');
+}));
