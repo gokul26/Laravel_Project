@@ -24,7 +24,7 @@ Route::get('/register', function () {
 Route::post('/register',function(){
     $userdetails = new App\Users;
     $userdetails->email= Input::get('email');
-    $userdetails->name= Input::get('username');
+    $userdetails->username= Input::get('username');
     $userdetails->password= Hash::make(Input::get('password'));
     $userdetails->save();
 
@@ -40,10 +40,23 @@ Route::get('/login',function(){
 
 
 Route::get('/logout',function(){
+
+    Auth::logout();
     return view('logout');
 });
 
-Route::get('/home', array('before' => 'auth.basic', function()
+Route::get('/home', function()
 {
     return View::make('home');
-}));
+})->middleware('auth.basic');
+
+Route::post('/login',function()
+{
+    $credentials = Input::only('username', 'password');
+
+    if(Auth::attempt($credentials))
+    {
+        return Redirect::to('home');
+    }
+    return Redirect::to('login');
+});
