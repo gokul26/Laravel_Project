@@ -60,3 +60,5 @@ Route::post('/login',function()
     }
     return Redirect::to('login');
 });
+
+Route::resource('posts', 'PostController');
