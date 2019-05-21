@@ -13,7 +13,9 @@
 
     </head>
     <body>
+        @include('inc.navbar')
         <div class="containner">
+            @include('inc.messages')
             @yield('content')
         </div>
     </body>
