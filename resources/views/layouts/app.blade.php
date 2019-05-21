@@ -9,7 +9,8 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-    <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet" type="text/css">
+        {{-- <script type='text/javascript' src="{{asset('js/bootstrap.js')}}"></script> --}}
 
     </head>
     <body>
@@ -18,5 +19,9 @@
             @include('inc.messages')
             @yield('content')
         </div>
+        <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+        <script>
+            CKEDITOR.replace( 'article-ckeditor' );
+        </script>
     </body>
 </html>
