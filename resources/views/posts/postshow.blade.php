@@ -6,7 +6,7 @@
     <h3>{{$post->title}}</h3>
     <small>Written on - {{$post->created_at}}</small>
     <div>
-        {{$post->body}}
+        {!! $post->body !!}
     </div>
     <a class="btn btn-sm btn-primary" href="/posts/{{$post->id}}/edit">Edit</a>
     {!!Form::open(['action'=>['PostController@destroy', $post->id], 'method'=>'POST', 'class'=>'pull-right'])!!}
