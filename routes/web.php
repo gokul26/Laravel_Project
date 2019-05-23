@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/', 'PostController@index');
 // Route for registration
@@ -47,9 +47,9 @@ Route::get('/logout',function(){
     return view('logout');
 });
 
-Route::get('/home', function()
+Route::get('/dashboard', function()
 {
-    return View::make('home');
+    return View::make('dashboard');
 })->middleware('auth.basic');
 
 Route::post('/login',function()
@@ -58,7 +58,7 @@ Route::post('/login',function()
 
     if(Auth::attempt($credentials))
     {
-        return Redirect::to('home');
+        return Redirect::to('dashboard');
     }
     return Redirect::to('login');
 });
@@ -67,8 +67,4 @@ Route::resource('posts', 'PostController');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'DashboardController@index');

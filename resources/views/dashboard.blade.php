@@ -14,7 +14,9 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <span class="pull-right">
+                        <a href="/posts/create" class="btn btn-sm btn-primary">Create Posts</a>
+                    </span>
                 </div>
             </div>
         </div>
