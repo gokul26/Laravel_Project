@@ -7,7 +7,8 @@
             <div class="well">
             <h3><a href="/posts/{{$post->id}}">{{$post->title}}</a></h3>
             <div>
-                {!!$post->body!!}-
+                {!!$post->body!!}
+                Posted on -
                 {{$post->created_at}}
             </div>
             </div>

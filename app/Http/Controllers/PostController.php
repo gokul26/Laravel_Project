@@ -4,9 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;
 
 class PostController extends Controller
-{
+{    
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except'=>['index', 'show']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -69,6 +79,12 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+
+        // Check the User
+        if(auth()->user()->id !== $post->user_id)
+        {
+            return redirect('/posts')->with('error', 'Unauthorized Page');
+        }
         return view('posts.postedit')->with('post',$post);
     }
 
@@ -101,6 +117,13 @@ class PostController extends Controller
     {
         // Delete Posts
         $post = Post::find($id);
+        
+        // Check the User Before Deleting
+        if(auth()->user()->id !== $post->user_id)
+        {
+            return redirect('/posts')->with('error', 'Unauthorized Page');
+        }
+
         $post->delete();
         return redirect('/posts')->with('success', 'Post Deleted');
     }
