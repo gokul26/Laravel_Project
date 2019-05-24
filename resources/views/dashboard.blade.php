@@ -28,7 +28,7 @@
                                 <td>{{$post->title}}</td>
                                 <td>
                                     <a href="/posts/{{$post->id}}/edit" class="btn btn-sm btn-default">Edit</a>
-                                    {!!Form::open(['url' => ['PostsController@destroy', $post->id], 'method' => 'POST'])!!}
+                                    {!!Form::open(['action' => ['PostController@destroy', $post->id], 'method' => 'POST'])!!}
                                         {{Form::hidden('_method', 'DELETE')}}
                                         {{Form::submit('Delete', ['class' => 'btn btn-sm btn-danger'])}}
                                     {!!Form::close()!!}
